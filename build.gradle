@@ -1,0 +1,89 @@
+plugins {
+    id 'org.springframework.boot' version "${gradleSpringBootPluginVersion}" apply false
+    id 'io.spring.dependency-management' version "${gradleSpringDependencyPluginVersion}"
+    id 'java'
+    id 'checkstyle'
+    id "com.github.spotbugs" version "${spotbugsVersion}" apply false
+}
+
+subprojects {
+
+    group = 'com.abc'
+
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: "checkstyle"
+    apply plugin: 'com.github.spotbugs'
+
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+
+    dependencyManagement {
+        imports {
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${gradleSpringCloudVersion}"
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+
+    checkstyle {
+        toolVersion = rootProject.properties.'checkstyle.version'
+        configFile = rootProject.file('gradle/config/checkstyle/checkstyle.xml')
+        showViolations = true
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.enabled false
+            html.enabled true
+        }
+    }
+
+    spotbugs {
+        toolVersion = rootProject.properties.'spotbugs.tools.version'
+        ignoreFailures = false
+        showStackTraces = true
+        showProgress = true
+        effort = 'max'
+        reportLevel = 'high'
+        maxHeapSize = '1g'
+        reportsDir = file("$buildDir/reports/spotbugs")
+    }
+
+    spotbugsMain {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+    spotbugsTest {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+}

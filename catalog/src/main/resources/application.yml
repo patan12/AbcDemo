@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/catalog/
+
+spring:
+  application:
+    name: catalog-demo-api
+
+management:
+  server.port: 9001
+  endpoints:
+    web:
+      base-path: /monitor
+#
