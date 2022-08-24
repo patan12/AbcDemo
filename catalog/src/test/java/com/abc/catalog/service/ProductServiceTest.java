@@ -55,7 +55,7 @@ class ProductServiceTest {
 
     //when
     Throwable exception = assertThrows(AbcApiException.class,
-        ()-> productService.createProduct(product)
+        () -> productService.createProduct(product)
     );
     //then
     assertThat(exception.getMessage()).contains("Product Already Exist with id pia");

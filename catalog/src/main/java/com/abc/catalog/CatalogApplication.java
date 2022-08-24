@@ -37,6 +37,10 @@ public class CatalogApplication {
     return getObjectMapper();
   }
 
+  /**
+   * ObjectMapper object mapper.
+   * @return
+   */
   public static ObjectMapper getObjectMapper() {
     JavaTimeModule javaTimeModule = new JavaTimeModule();
     DateTimeFormatter dateTimeFormatter = ofPattern("yyyy-MM-dd'T'HH:mm:ss");

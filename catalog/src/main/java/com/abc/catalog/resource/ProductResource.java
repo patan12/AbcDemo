@@ -4,6 +4,7 @@
 
 package com.abc.catalog.resource;
 
+import com.abc.catalog.api.ProductApi;
 import com.abc.catalog.model.Product;
 import com.abc.catalog.service.ProductService;
 import javax.validation.Valid;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping(value = "/products", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ProductResource {
+public class ProductResource implements ProductApi {
 
   private ProductService productService;
 
@@ -31,6 +32,7 @@ public class ProductResource {
   }
 
 
+  @Override
   @GetMapping("/{id}")
   public ResponseEntity<Product> getProduct(@PathVariable final String id) {
     log.info("Hello2 {}", id);
@@ -38,8 +40,9 @@ public class ProductResource {
 
   }
 
+  @Override
   @PostMapping
-  public ResponseEntity<Product> updateProduct(@Valid @RequestBody Product product) {
+  public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
     productService.createProduct(product);
     return ResponseEntity.ok(product);
   }

@@ -61,6 +61,8 @@ subprojects {
             xml.enabled false
             html.enabled true
         }
+        exclude '**/com/abc/catalog/api/**'
+
     }
 
     spotbugs {

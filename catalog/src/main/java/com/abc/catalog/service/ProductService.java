@@ -11,9 +11,17 @@ import com.abc.catalog.exception.AbcApiException;
 import com.abc.catalog.model.Product;
 import org.springframework.stereotype.Component;
 
+/**
+ * ProductService class.
+ */
 @Component
 public class ProductService {
 
+  /**
+   * Get the product by id.
+   * @param id product id
+   * @return product with id
+   */
   public Product getProduct(String id) {
     if (id.endsWith("a")) {
       throw new AbcApiException(PRODUCT_NOT_FOUND, id);
@@ -21,6 +29,11 @@ public class ProductService {
     return Product.builder().id("pid").barcode("12345").name("Product").build();
   }
 
+  /**
+   * Create a product.
+   *
+   * @param product Product
+   */
   public void createProduct(Product product) {
     // intentionally empty
     if (product.getId().endsWith("a")) {
