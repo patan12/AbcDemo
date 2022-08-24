@@ -1,4 +1,5 @@
 rootProject.name = 'Abc'
 
 include 'catalog'
+include 'catalog-model'
 include 'catalog-common'

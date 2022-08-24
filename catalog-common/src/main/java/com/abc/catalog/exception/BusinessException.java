@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 JCPenney Co. All rights reserved.
+ * Copyright (c) 2022 Abc Co. All rights reserved.
  */
 
 package com.abc.catalog.exception;

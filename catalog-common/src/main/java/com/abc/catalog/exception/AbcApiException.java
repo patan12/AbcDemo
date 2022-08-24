@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018 JCPenney Co. All rights reserved.
+ * Copyright (c) 2022 Abc Co. All rights reserved.
  */
 
 package com.abc.catalog.exception;
 
-import com.abc.catalog.error.ErrorCode;
+import com.abc.catalog.model.ErrorCode;
 import org.springframework.http.HttpStatus;
 
 /**

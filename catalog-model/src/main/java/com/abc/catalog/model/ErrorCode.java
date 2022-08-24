@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2018 JCPenney Co. All rights reserved.
+ * Copyright (c) 2022 Abc Co. All rights reserved.
  */
 
-package com.abc.catalog.error;
+package com.abc.catalog.model;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum ErrorCode {
   PRODUCT_NOT_FOUND("Product not found", HttpStatus.NOT_FOUND),
+  PRODUCT_ALREADY_EXIST("Product Already Exist found", HttpStatus.CONFLICT),
 
   ;
 

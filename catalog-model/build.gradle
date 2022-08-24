@@ -1,17 +1,11 @@
-plugins {
-    id 'org.springframework.boot' version "${gradleSpringBootPluginVersion}"
-}
+
 
 dependencies {
-    implementation project(':catalog-common')
-    implementation project(':catalog-model')
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: "${openApiDocsVersion}"
-
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
