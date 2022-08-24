@@ -35,7 +35,7 @@ public class ProductResource implements ProductApi {
   @Override
   @GetMapping("/{id}")
   public ResponseEntity<Product> getProduct(@PathVariable final String id) {
-    log.info("Hello2 {}", id);
+    log.info("Hello {}", id);
     return ResponseEntity.ok(productService.getProduct(id));
 
   }
