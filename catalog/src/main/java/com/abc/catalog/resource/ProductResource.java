@@ -4,12 +4,8 @@
 
 package com.abc.catalog.resource;
 
-import static com.abc.catalog.model.ErrorCode.PRODUCT_NOT_FOUND;
-
-import com.abc.catalog.exception.AbcApiException;
 import com.abc.catalog.model.Product;
 import com.abc.catalog.service.ProductService;
-import com.abc.catalog.utils.ProductUtils;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

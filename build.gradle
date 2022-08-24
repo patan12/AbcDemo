@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version "${gradleSpringDependencyPluginVersion}"
     id 'java'
     id 'checkstyle'
+    id 'jacoco'
     id "com.github.spotbugs" version "${spotbugsVersion}" apply false
 }
 
@@ -13,6 +14,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: "checkstyle"
+    apply plugin: "jacoco"
     apply plugin: 'com.github.spotbugs'
 
 
@@ -84,6 +86,43 @@ subprojects {
             xml.enabled = false
             html.enabled = true
         }
+    }
+
+    apply plugin: "jacoco"
+
+    jacoco {
+        toolVersion = "0.8.6"
+        reportsDir = file("$buildDir/reports/jacco")
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+            html.enabled true
+        }
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports after running tests."
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = min_local_coverage.toBigDecimal();
+                }
+            }
+
+        }
+    }
+
+    test {
+        finalizedBy jacocoTestReport
+    }
+
+    check.dependsOn jacocoTestCoverageVerification
+
+    tasks.named('test') {
+        useJUnitPlatform()
     }
 
 }
