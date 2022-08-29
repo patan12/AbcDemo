@@ -38,7 +38,7 @@ public class RestSteps extends BaseStep {
     Product result = validatableResponse.extract().body().as(Product.class);
 
     assertThat(result).isEqualTo(
-        Product.builder().id(id).barcode(barcode).name(name).build());
+        Product.builder().id("aa").barcode("aa").name("he").build());
 
   }
 }
