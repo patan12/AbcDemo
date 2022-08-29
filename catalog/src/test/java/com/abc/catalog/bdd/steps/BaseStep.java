@@ -8,6 +8,7 @@ import static io.restassured.RestAssured.given;
 
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
+import org.springframework.boot.test.web.server.LocalManagementPort;
 import org.springframework.boot.test.web.server.LocalServerPort;
 /*
     RestSteps.
@@ -16,11 +17,14 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 public abstract class BaseStep {
 
   private final static String WEB_BASE_PATH = "/api/catalog/";
-  private final static String ACTUATOR_BASE_PATH = "/api/catalog/monitor";
+  private final static String ACTUATOR_BASE_PATH = "/monitor";
   private final static String BASE_URI = "http://localhost";
 
   @LocalServerPort
   private int port;
+
+  @LocalManagementPort
+  private int managementPort;
 
   private void configureRestAssured() {
     RestAssured.baseURI = BASE_URI;
@@ -30,7 +34,7 @@ public abstract class BaseStep {
 
   private void configureRestAssuredActuator() {
     RestAssured.baseURI = BASE_URI;
-    RestAssured.port = port;
+    RestAssured.port = managementPort;
     RestAssured.basePath = ACTUATOR_BASE_PATH;
   }
 
