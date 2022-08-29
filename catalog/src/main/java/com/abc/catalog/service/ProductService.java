@@ -26,7 +26,7 @@ public class ProductService {
     if (id.endsWith("a")) {
       throw new AbcApiException(PRODUCT_NOT_FOUND, id);
     }
-    return Product.builder().id("pid").barcode("12345").name("Product").build();
+    return Product.builder().id(id).barcode("12345").name("Product").build();
   }
 
   /**

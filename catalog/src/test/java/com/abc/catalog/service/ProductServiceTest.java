@@ -30,7 +30,7 @@ class ProductServiceTest {
 
     //then
     assertThat(result).isEqualTo(
-        Product.builder().id("pid").barcode("12345").name("Product").build());
+        Product.builder().id(id).barcode("12345").name("Product").build());
   }
 
   @Test
